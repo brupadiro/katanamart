@@ -1,0 +1,146 @@
+{
+  "HorizonLayout": [
+    {
+      "layout": "logo",
+      "showMenu": true,
+      "showSearch": true,
+      "showLogo": true
+    },
+    {
+      "layout": "category",
+      "type": "icon",
+      "wrap": false,
+      "size": 1.0,
+      "radius": 50.0,
+      "items": [
+        { "category": 3, "label": "Handmadee Iaito Swords",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 14, "label": "Keikogi - Clothing",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 22, "label": "Hakama",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 23, "label": "Tabi and accessories",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 24, "label": "Samurai Swords Accessories",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 27, "label": "Maintenance", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 33, "label": "Bokuto / Bokken", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 39, "label": "Budogu & Ningu",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 40, "label": "Tameshigiri", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 42, "label": "Bo & Jo", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 43, "label": "Padded Swords", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 44, "label": "Bags",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 45, "label": "Handmade Bokken", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 59, "label": "Handmade Katana, Samurai Swords", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 65, "label": "BARGAIN CORNER",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 209, "label": "CUSTOM SWORDS IN STOCK", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 210, "label": "TATAMI", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 211, "label": "BOGU - KENDO ARMOR", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 212, "label": "DISCIPLINE", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 228, "label": "TRAINING SET | BIG DEAL",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 232, "label": "Clothing & Accessories", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 233, "label": "YariNoHanzo Handmade", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 236, "label": "GIFT CARDS", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 241, "label": "Decorative Swords",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 245, "label": "Hanbo",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 246, "label": "Handmade Katana",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 247, "label": "Samurai Swords", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 248, "label": "BLACK FRIDAY", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 249, "label": "Iaito Maintenance",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 250, "label": "Red Oak",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 251, "label": "Ebony Wood", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 252, "label": "Yari", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 253, "label": "Naginata", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 254, "label": "Bokuto", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 256, "label": "TRAINING SET AIKIDO",  "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 257, "label": "TRAINING SET IAIDO", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 258, "label": "TRAINING SET KENDO", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] },
+        { "category": 259, "label": "CHRISTMAS 2021", "image": "https://user-images.githubusercontent.com/1459805/62820029-2e679f00-bb88-11e9-80de-fdf115cfd942.png", "originalColor": false, "colors": ["#FCC2BF", "#FCC2BF"] }
+      ]
+    },
+    {
+      "layout": "bannerImage",
+      "isSlider": true,
+      "autoPlay": false,
+      "showNumber": false,
+      "design": "default",
+      "showBackGround": true,
+      "radius": 2.0,
+      "items": [
+        {
+          "category": 233,
+          "image": "https://www.yarinohanzo.com/skin/bcse_mobility/images/YARI-IT-COM.jpg",
+          "padding": 15.0
+        },
+        {
+          "category": 14,
+          "image": "https://www.yarinohanzo.com/skin/bcse_mobility/images/gino.jfif",
+          "padding": 15.0
+        }
+      ]
+    },
+    {
+      "name": "Basic Iaito Swords",
+      "image": "",
+      "layout": "twoColumn",
+      "category": 4,
+      "isSnapping": true
+    },
+    {
+      "name": "Practical Iaito Swords",
+      "image": "",
+      "layout": "twoColumn",
+      "category": 5,
+      "isSnapping": true
+    }
+  ],
+  "Setting": {
+    "MainColor": "#F3090B",
+    "FontFamily": "Roboto",
+    "ProductListLayout": "list",
+    "StickyHeader": false,
+    "ShowChat": true
+  },
+  "TabBar": [
+    {
+      "layout": "home",
+      "icon": "home",
+      "pos": 100,
+      "fontFamily": "CupertinoIcons",
+      "key": "p1q235ba14"
+    },
+    {
+      "pos": 200,
+      "layout": "category",
+      "icon": "assets/icons/tabs/icono-tienda-rojo.png",
+      "fontFamily": "CupertinoIcons",
+      "categoryLayout": "card",
+      "key": "hwu0rkrizt"
+    },
+    {
+      "key": "2reihs4qzc",
+      "icon": "search",
+      "layout": "search",
+      "fontFamily": "CupertinoIcons",
+      "pos": 300,
+      "size": 24
+    },
+    {
+      "pos": 400,
+      "icon": "bag",
+      "layout": "cart",
+      "categoryLayout": "cart",
+      "key": "a2xts0oou6",
+      "fontFamily": "CupertinoIcons"
+    },
+    {
+      "layout": "profile",
+      "fontFamily": "CupertinoIcons",
+      "pos": 500,
+      "key": "69jw5yx12d",
+      "icon": "person"
+    }
+  ],
+  "searchSuggestion": [
+    "Here are some suggestions:",
+    "man",
+    "woman",
+    "dress",
+    "Stitch"
+  ]
+}
