@@ -131,7 +131,7 @@ class _StateCardCategories extends BaseScreen<CardCategories> {
   @override
   Widget build(BuildContext context) {
     var categories =
-        widget.categories!.where((item) => item.parent == '0').toList();
+        widget.categories!.where((item) => item.parent == '2').toList();
     if (categories.isEmpty) {
       categories = widget.categories!;
     }
@@ -146,7 +146,7 @@ class _StateCardCategories extends BaseScreen<CardCategories> {
             return Parent(
               parent: _CategoryCardItem(
                 categories[index],
-                hasChildren: hasChildren(categories[index].id),
+                hasChildren: true, //hasChildren(categories[index].id),
                 offset: page - index,
                 enableParallax: widget.enableParallax,
                 parallaxImageRatio: widget.parallaxImageRatio,
@@ -169,7 +169,7 @@ class _CategoryCardItem extends StatelessWidget {
 
   const _CategoryCardItem(
     this.category, {
-    this.hasChildren = false,
+    this.hasChildren = true,
     this.offset,
     this.enableParallax = false,
     this.parallaxImageRatio,

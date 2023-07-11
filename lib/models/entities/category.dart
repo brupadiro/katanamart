@@ -117,60 +117,6 @@ class Category {
         'image': {'src': image}
       };
 
-  Category.fromOpencartJson(Map<String, dynamic> parsedJson) {
-    try {
-      id = parsedJson['id'] ?? '0';
-      name = HtmlUnescape().convert(parsedJson['name']);
-      image = parsedJson['image'] ?? kDefaultImage;
-      totalProduct = parsedJson['count'] != null
-          ? int.parse(parsedJson['count'].toString())
-          : 0;
-      parent =
-          parsedJson['parent'] != null ? parsedJson['parent'].toString() : '0';
-    } catch (e, trace) {
-      printLog(e.toString());
-      printLog(trace.toString());
-    }
-  }
-
-  Category.fromMagentoJson(Map<String, dynamic> parsedJson) {
-    try {
-      id = '${parsedJson['id']}';
-      name = parsedJson['name'];
-      image = parsedJson['image'] ?? kDefaultImage;
-      parent = '${parsedJson['parent_id']}';
-      totalProduct = parsedJson['product_count'];
-    } catch (e, trace) {
-      printLog(e.toString());
-      printLog(trace.toString());
-    }
-  }
-
-  Category.fromJsonShopify(Map<String, dynamic> parsedJson) {
-    // printLog('fromJsonShopify id $parsedJson');
-
-    if (parsedJson['slug'] == 'uncategorized') {
-      return;
-    }
-
-    try {
-      id = parsedJson['id'];
-      sku = parsedJson['id'];
-      name = parsedJson['title'];
-      parent = '0';
-
-      final image = parsedJson['image'];
-      if (image != null) {
-        this.image = image['src'].toString();
-      } else {
-        this.image = kDefaultImage;
-      }
-    } catch (e, trace) {
-      printLog(e.toString());
-      printLog(trace.toString());
-    }
-  }
-
   Category.fromJsonPresta(Map<String, dynamic> parsedJson, apiLink) {
     try {
       id = parsedJson['id'].toString();
@@ -180,31 +126,6 @@ class Category {
       totalProduct = parsedJson['nb_products_recursive'] != null
           ? int.parse(parsedJson['nb_products_recursive'].toString())
           : null;
-    } catch (e, trace) {
-      printLog(e.toString());
-      printLog(trace.toString());
-    }
-  }
-
-  Category.fromJsonStrapi(Map<String, dynamic> parsedJson, Function apiLink) {
-    try {
-      var model = SerializerProductCategory.fromJson(parsedJson);
-      id = model.id.toString();
-      name = model.name;
-      parent = '0';
-      totalProduct = model.products!.length;
-
-      products = [];
-      for (var product in model.products!) {
-        var newProduct = Product.fromJsonStrapi(product, apiLink);
-        products!.add(newProduct);
-      }
-
-      if (model.featureImage != null) {
-        image = apiLink(model.featureImage!.url);
-      } else {
-        image = kDefaultImage;
-      }
     } catch (e, trace) {
       printLog(e.toString());
       printLog(trace.toString());
@@ -233,67 +154,6 @@ class Category {
   // } else {
   //   this.image = kCategoryStaticImages[parsedJson['id']] ?? kDefaultImage;
   // }
-
-  Category.fromNotion(Map<String, dynamic> parsedJson) {
-    try {
-      id = parsedJson['id'] ?? '';
-      final properties = parsedJson['properties'];
-
-      if (properties == null) {
-        throw Exception('Something went wrong!');
-      }
-      name = NotionDataTools.fromTitle(properties['Name']);
-      final dataParent =
-          NotionDataTools.fromRelation(properties['Parent']) ?? ['0'];
-      parent = dataParent.isNotEmpty ? dataParent.first : '0';
-
-      totalProduct =
-          (NotionDataTools.fromNumber(properties['Count']) ?? 0) as int;
-      final getImage = NotionDataTools.fromFile(properties['Image']);
-
-      final slugData = NotionDataTools.fromRichText(properties['Slug']);
-
-      if (slugData?.isNotEmpty ?? false) {
-        slug = slugData!.first;
-      }
-
-      if (getImage != null && getImage.isNotEmpty) {
-        image = getImage.first;
-      } else {
-        image = kDefaultImage;
-      }
-
-      printLog(this);
-    } catch (e, trace) {
-      printLog(e.toString());
-      printLog(trace.toString());
-    }
-  }
-
-  Category.fromBigCommerce(Map<String, dynamic> parsedJson) {
-    try {
-      id = '${parsedJson['id'] ?? ''}';
-
-      name = parsedJson['name'];
-
-      parent = '${parsedJson['parent_id']}';
-
-      totalProduct = parsedJson['count'] as int;
-
-      final getImage = parsedJson['image_url'];
-
-      if (getImage != null && getImage is String && getImage.isNotEmpty) {
-        image = getImage;
-      } else {
-        image = kDefaultImage;
-      }
-
-      printLog(this);
-    } catch (e, trace) {
-      printLog(e.toString());
-      printLog(trace.toString());
-    }
-  }
 
   bool get isRoot => parent == '0';
 

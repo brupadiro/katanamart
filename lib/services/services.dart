@@ -2,7 +2,6 @@ import '../common/config.dart';
 import '../common/constants.dart';
 import '../frameworks/prestashop/services/prestashop_mixin.dart';
 import '../frameworks/wordpress/services/wordpress_mixin.dart';
-import '../modules/advertisement/index.dart' show AdvertisementServiceImpl;
 // Enable Audio feature
 // import '../modules/audio/services/audio_service_mixin.dart';
 import '../modules/digits_mobile_login/services/digits_mobile_login_service_mixin.dart';

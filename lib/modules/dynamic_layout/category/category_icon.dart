@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fstore/common/constants.dart';
+import 'package:fstore/models/entities/back_drop_arguments.dart';
+import 'package:fstore/routes/flux_navigate.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../config/category_config.dart';
@@ -24,35 +27,17 @@ class CategoryIcons extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  String? _getCategoryName({required CategoryItemConfig item}) {
-    if (config.commonItemConfig.hideTitle) {
-      return '';
-    }
-
-    if (item.keepDefaultTitle) {
-      return item.title ?? '';
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    var CategoryItems = [
-      {
-        "name": "Handmade Katana\nSamurai Swords",
-        "id": 59,
-        "image": "handmade-katana.png"
-      },
-      {
-        "name": "Handmade Laito\nSamurai Swords",
-        "id": 59,
-        "image": "handmade-iaito.png"
-      },
-      {"name": "Handmade\nBokken", "id": 59, "image": "bokken.png"},
-      {"name": "Uniforms", "id": 59, "image": "uniforms.png"}
+    final _categoryItems = [
+      {'name': 'Shinken', 'id': 59, 'image': 'handmade-katana.png'},
+      {'name': 'Iaito', 'id': 3, 'image': 'handmade-iaito.png'},
+      {'name': 'Bokken', 'id': 45, 'image': 'bokken.png'},
+      {'name': 'Uniforms', 'id': 14, 'image': 'uniforms.png'}
     ];
+
     var items = <Widget>[];
-    for (var item in CategoryItems) {
+    for (var item in _categoryItems) {
       items.add(_categoryIcon(item));
     }
 
@@ -70,24 +55,35 @@ class CategoryIcons extends StatelessWidget {
   }
 
   Widget _categoryIcon(Map category) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Image.asset(
-          'assets/icons/categories/${category['image']}',
-          height: 48,
-          width: 48,
-        ),
-        Text(
-          category['name'],
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
+    return InkWell(
+      onTap: () {
+        FluxNavigate.pushNamed(
+          RouteList.backdrop,
+          arguments: BackDropArguments(
+            cateId: category['id'].toString(),
+            cateName: category['name'],
           ),
-        ),
-      ],
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/icons/categories/${category['image']}',
+            height: 48,
+            width: 48,
+          ),
+          Text(
+            category['name'],
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

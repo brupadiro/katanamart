@@ -95,7 +95,7 @@ class PrestashopService extends BaseServices {
       List<int> selectedCategories = [3, 59, 45, 14];
       for (var item in categories) {
         item['name'] = getValueByLang(item['name']);
-        if (selectedCategories.contains(int.parse(item['id'].toString()))) {
+        if (int.parse(item["level_depth"]) > 1) {
           result.add(Category.fromJsonPresta(item, prestaApi.apiLink));
         }
       }

@@ -32,7 +32,11 @@ class _ProductDescriptionState extends State<ProductDescription> {
   }
 
   void getFeatures() {
-    features = services.api.getProductFeatures(widget.product!.features!)!;
+    if (widget.product!.features != null) {
+      features = services.api.getProductFeatures(widget.product!.features!)!;
+    } else {
+      features = Future.value(<ProductFeature>[]);
+    }
   }
 
   @override

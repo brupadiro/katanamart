@@ -212,7 +212,6 @@ class _ProductListState extends State<ProductList> {
       cacheExtent: 500.0,
       itemCount: products.length,
       itemBuilder: (context, i) {
-        print(products[i]);
         return Services().widget.renderProductCardView(
               item: products[i],
               width: widthContent,

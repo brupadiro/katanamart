@@ -30,7 +30,7 @@ class HeartButton extends StatelessWidget {
                 backgroundColor: Colors.white.withOpacity(0.7),
                 child: Icon(
                   CupertinoIcons.heart,
-                  color: Colors.grey.shade400,
+                  color: Colors.pink,
                   size: size ?? 16.0,
                 ),
               ),
