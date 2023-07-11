@@ -296,32 +296,11 @@ abstract class BaseFrameworks {
     bool enableParallax = false,
     double? parallaxImageRatio,
   }) {
-    switch (layout) {
-      case CardCategories.type:
-        return CardCategories(
-          categories: categories,
-          enableParallax: enableParallax,
-          parallaxImageRatio: parallaxImageRatio,
-        );
-      case ColumnCategories.type:
-        return ColumnCategories(categories);
-      case SubCategories.type:
-        return SubCategories(categories);
-      case SideMenuCategories.type:
-        return SideMenuCategories(categories);
-      case SideMenuSubCategories.type:
-        return SideMenuSubCategories(categories);
-      case SideMenuGroupCategories.type:
-        return SideMenuGroupCategories(categories);
-      case HorizonMenu.type:
-        return HorizonMenu(categories);
-      case GridCategory.type:
-        return GridCategory(categories);
-      case ParallaxCategories.type:
-        return ParallaxCategories(categories);
-      default:
-        return HorizonMenu(categories);
-    }
+    return CardCategories(
+      categories: categories,
+      enableParallax: enableParallax,
+      parallaxImageRatio: parallaxImageRatio,
+    );
   }
 
   /// render screen for Map

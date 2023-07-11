@@ -113,40 +113,19 @@ class CategoriesScreenState extends State<CategoriesScreen>
 
             return SafeArea(
               bottom: false,
-              child: [
-                GridCategory.type,
-                ColumnCategories.type,
-                SideMenuCategories.type,
-                SubCategories.type,
-                SideMenuSubCategories.type,
-                SideMenuGroupCategories.type,
-                ParallaxCategories.type,
-                CardCategories.type
-              ].contains(appModel.categoryLayout)
-                  ? Column(
-                      children: <Widget>[
-                        _HeaderCategory(showSearch: widget.showSearch),
-                        Expanded(
-                          child: renderCategories(
-                            categories,
-                            appModel.categoryLayout,
-                            widget.enableParallax,
-                            widget.parallaxImageRatio,
-                          ),
-                        )
-                      ],
-                    )
-                  : ListView(
-                      children: <Widget>[
-                        _HeaderCategory(showSearch: widget.showSearch),
-                        renderCategories(
-                          categories,
-                          appModel.categoryLayout,
-                          widget.enableParallax,
-                          widget.parallaxImageRatio,
-                        )
-                      ],
+              child: Column(
+                children: <Widget>[
+                  _HeaderCategory(showSearch: widget.showSearch),
+                  Expanded(
+                    child: renderCategories(
+                      categories,
+                      appModel.categoryLayout,
+                      widget.enableParallax,
+                      widget.parallaxImageRatio,
                     ),
+                  )
+                ],
+              ),
             );
           },
         ),
@@ -156,11 +135,11 @@ class CategoriesScreenState extends State<CategoriesScreen>
 
   Widget renderCategories(List<Category>? categories, String layout,
       bool enableParallax, double? parallaxImageRatio) {
-    return Services().widget.renderCategoryLayout(
-        categories: categories,
-        layout: layout,
-        enableParallax: enableParallax,
-        parallaxImageRatio: parallaxImageRatio);
+    return CardCategories(
+      categories: categories,
+      enableParallax: enableParallax,
+      parallaxImageRatio: parallaxImageRatio,
+    );
   }
 
   @override
