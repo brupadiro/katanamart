@@ -144,13 +144,13 @@ class _StateCardCategories extends BaseScreen<CardCategories> {
           categories.length,
           (index) {
             return Parent(
-              parent: _CategoryCardItem(
-                categories[index],
-                hasChildren: true, //hasChildren(categories[index].id),
-                offset: page - index,
-                enableParallax: widget.enableParallax,
-                parallaxImageRatio: widget.parallaxImageRatio,
-              ),
+              parent: _CategoryCardItem(categories[index],
+                  hasChildren: true, //hasChildren(categories[index].id),
+                  offset: page - index,
+                  enableParallax: widget.enableParallax,
+                  parallaxImageRatio: widget.parallaxImageRatio,
+                  subcategories:
+                      getChildCategoryList(categories[index]) as ChildList),
               childList: getChildCategoryList(categories[index]) as ChildList,
             );
           },
@@ -165,6 +165,7 @@ class _CategoryCardItem extends StatelessWidget {
   final bool hasChildren;
   final bool enableParallax;
   final double? parallaxImageRatio;
+  final Widget? subcategories;
   final offset;
 
   const _CategoryCardItem(
@@ -172,6 +173,7 @@ class _CategoryCardItem extends StatelessWidget {
     this.hasChildren = true,
     this.offset,
     this.enableParallax = false,
+    this.subcategories,
     this.parallaxImageRatio,
   });
 
@@ -219,7 +221,12 @@ class _CategoryCardItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: hasChildren
-          ? null
+          ? () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => SubCategoryPopup(
+                      categoryTitle: category.name!,
+                      subCategories: subcategories)));
+            }
           : () {
               FluxNavigate.pushNamed(
                 RouteList.backdrop,
@@ -251,7 +258,7 @@ class _CategoryCardItem extends StatelessWidget {
           }
 
           return Container(
-            height: constraints.maxWidth * 0.15,
+            height: constraints.maxWidth * 0.12,
             padding: const EdgeInsets.only(left: 10, right: 10),
             margin: const EdgeInsets.only(bottom: 10),
             child: Stack(
@@ -259,10 +266,10 @@ class _CategoryCardItem extends StatelessWidget {
                 Container(
                   width: constraints.maxWidth,
                   height: constraints.maxWidth * 0.15,
-                  decoration: BoxDecoration(
-                    color:
-                        getColorFromString(category.name?.toUpperCase() ?? ''),
-                    borderRadius: BorderRadius.circular(3.0),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                        bottom: BorderSide(color: Colors.black26, width: 1)),
                   ),
                   child: SizedBox(
                     width: constraints.maxWidth /
@@ -277,10 +284,10 @@ class _CategoryCardItem extends StatelessWidget {
                               category.name?.toUpperCase() ?? '',
                               style: const TextStyle(
                                   color: Colors.black,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w600),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               color: Colors.black,
                               size: 16,
@@ -296,15 +303,34 @@ class _CategoryCardItem extends StatelessWidget {
       ),
     );
   }
+}
 
-  //generate random color
-  Color getColorFromString(String str) {
-    final hash = str.hashCode;
-    final random = Random(hash);
-    final r = random.nextInt(128) + 128; // generamos un número entre 128 y 255
-    final g = random.nextInt(128) + 128; // generamos un número entre 128 y 255
-    final b = random.nextInt(128) + 128; // generamos un número entre 128 y 255
-    return Color.fromRGBO(r, g, b, 1);
+class SubCategoryPopup extends StatelessWidget {
+  const SubCategoryPopup(
+      {Key? key, required this.categoryTitle, this.subCategories})
+      : super(key: key);
+  final String categoryTitle;
+  final Widget? subCategories;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        title: Text(categoryTitle.toUpperCase()),
+      ),
+      body: SingleChildScrollView(child: subCategories),
+    );
   }
 }
 
@@ -352,43 +378,33 @@ class SubItem extends StatelessWidget {
           child: Row(
             children: <Widget>[
               const SizedBox(width: 15.0),
-              for (int i = 1; i <= level; i++)
-                Container(
-                  width: 10.0,
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        width: 1.5,
-                        color: Theme.of(context).primaryColor.withOpacity(0.4),
-                      ),
-                    ),
-                  ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Theme.of(context).primaryColorLight,
                 ),
-              Expanded(
-                child: Text(
-                  seeAll != '' ? seeAll : category.name!,
-                  style: const TextStyle(
-                    fontSize: 17,
-                  ),
+                child: ImageTools.image(
+                  url: category.image ?? '',
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.contain,
                 ),
               ),
-              if ((category.totalProduct ?? 0) > 0)
-                GestureDetector(
-                  onTap: showProductList,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                    child: Text(
-                      S.of(context).nItems(category.totalProduct.toString()),
-                      style: Theme.of(context).textTheme.caption!.copyWith(
-                            color: Theme.of(context).primaryColor,
-                          ),
-                    ),
-                  ),
+              Container(
+                width: 20,
+              ),
+              Expanded(
+                child: Text(
+                  seeAll != '' ? seeAll : category.name!.toUpperCase(),
+                  style: const TextStyle(
+                      fontSize: 17, fontWeight: FontWeight.w900),
                 ),
+              ),
               IconButton(
-                icon: const Icon(Icons.keyboard_arrow_right),
+                icon: const Icon(
+                  Icons.keyboard_arrow_right,
+                  size: 35,
+                ),
                 onPressed: showProductList,
               )
             ],

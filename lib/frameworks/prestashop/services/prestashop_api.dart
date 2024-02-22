@@ -53,7 +53,7 @@ class PrestashopAPI {
 
   Future<dynamic> signin(String endPoint, Map<String, dynamic> body) async {
     var response = await httpGet(
-      Uri.tryParse(loginLink('$endPoint?email=${body['email']}'))!,
+      Uri.tryParse(loginLink('$endPoint?customers?filter[email]=${body['email']}'))!,
       headers: <String, String>{
         'Authorization': 'Basic ' + base64Encode(utf8.encode('$key:')),
       },

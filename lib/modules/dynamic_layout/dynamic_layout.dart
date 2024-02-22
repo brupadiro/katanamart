@@ -22,7 +22,6 @@ import 'config/index.dart';
 import 'divider/divider.dart';
 import 'header/header_search.dart';
 import 'header/header_text.dart';
-import 'instagram_story/instagram_story.dart';
 import 'logo/logo.dart';
 import 'product/product_list_simple.dart';
 import 'product/product_recent_placeholder.dart';
@@ -30,7 +29,6 @@ import 'slider_testimonial/index.dart';
 import 'spacer/spacer.dart';
 import 'story/index.dart';
 import 'testimonial/index.dart';
-import 'tiktok/index.dart';
 import 'video/index.dart';
 
 class DynamicLayout extends StatelessWidget {
@@ -226,17 +224,6 @@ class DynamicLayout extends StatelessWidget {
       case 'sliderTestimonial':
         return SliderTestimonial(
           config: SliderTestimonialConfig.fromJson(config),
-        );
-      case 'instagramStory':
-        return InstagramStory(
-          config: InstagramStoryConfig.fromJson(config),
-        );
-      case 'tiktokVideos':
-        if (Config().isBuilder || !isMobile) {
-          return TikTokVideosPlaceholder();
-        }
-        return TikTokVideos(
-          config: TikTokVideosConfig.fromJson(config),
         );
       default:
         return const SizedBox();

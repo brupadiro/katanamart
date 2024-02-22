@@ -9,13 +9,6 @@ import '../../models/index.dart' show AppModel, Category, CategoryModel;
 import '../../modules/dynamic_layout/config/app_config.dart';
 import '../../services/index.dart';
 import 'layouts/card.dart';
-import 'layouts/column.dart';
-import 'layouts/grid.dart';
-import 'layouts/parallax.dart';
-import 'layouts/side_menu.dart';
-import 'layouts/side_menu_with_group.dart';
-import 'layouts/side_menu_with_sub.dart';
-import 'layouts/sub.dart';
 
 class CategoriesScreen extends StatefulWidget {
   final bool showSearch;

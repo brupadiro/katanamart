@@ -153,7 +153,7 @@ class PrestashopService extends BaseServices {
       var limit =
           '${(page - 1) * apiPageSize},${config['limit'] ?? apiPageSize}';
       var response = await prestaApi
-          .getAsync('product?display=$display&limit=$limit$filter&lang=$lang');
+          .getAsync('products?display=$display&limit=$limit$filter&lang=$lang');
       if (response is Map) {
         for (var item in response['products']) {
           products
@@ -828,22 +828,25 @@ class PrestashopService extends BaseServices {
         'lastname': lastName,
         'email': username,
         'passwd': password,
-        'phone': phoneNumber,
+        //'phone': phoneNumber,
         'is_vendor': isVendor.toString()
       };
 
       var response = await prestaApi.postAsync('customers', body, 'customer');
-      var user;
-      if (response is Map) {
-        user = User.fromPrestaJson(response['customer']);
+      var user; 
+      if (response is Map && !response.containsKey("errors")) {
+        print(response); 
+        user = User.fromPrestaJson(response['customers']);
         await storage.write(key: 'jwtToken', value: response['token']);
       } else {
         throw ('Email already exists!');
       }
       return user;
-    } catch (e) {
+    } catch (e, trace) {
+            printLog(trace.toString());
+      // Buscar el rastro del error
       printLog(e);
-      rethrow;
+      rethrow; 
     }
   }
 
@@ -852,7 +855,7 @@ class PrestashopService extends BaseServices {
   Future<User> login({username, password}) async {
     try {
       var response = await prestaApi.signin(
-          'signin', <String, String>{'email': username, 'password': password});
+          'customers', <String, String>{'email': username, 'password': password});
       if (response is Map && response['customers'][0] is Map) {
         await storage.write(
             key: 'jwtToken', value: response['customers'][0]['secure_key']);

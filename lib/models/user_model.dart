@@ -232,7 +232,7 @@ class UserModel with ChangeNotifier {
         lastName: lastName,
         username: username,
         password: password,
-        phoneNumber: phoneNumber,
+        //phoneNumber: phoneNumber,
         isVendor: isVendor ?? false,
       );
       await saveUser(user);

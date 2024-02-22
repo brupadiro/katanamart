@@ -13,8 +13,6 @@ import '../models/index.dart';
 import '../models/product_feature.dart';
 import '../modules/dynamic_layout/index.dart';
 import '../modules/dynamic_layout/product/product_list.dart';
-import '../screens/categories/layouts/parallax.dart';
-import '../screens/categories/layouts/side_menu_with_group.dart';
 import '../screens/checkout/widgets/payment_method_item.dart';
 import '../screens/index.dart';
 import '../services/index.dart';

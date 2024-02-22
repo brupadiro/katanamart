@@ -6,12 +6,12 @@ Map<String, dynamic> environment = {
   "serverConfig": {
     "type": "presta",
     // "url": "http://10.0.2.2:3000",
-    "url": "https://appkatanamart.com/api",
-    "key": "66RT4KT1429QYKPFQ7Q7WWKJZ9AIEDP9",
+    "url": "http://appkatanamart.yarinohanzo.com/api",
+    "key": "PQ6YZT3198MZV4FGTRB29Y6Q7IB8NB3C",
     'blog': 'https://mstore.io',
     //Your website woocommerce. You can remove this line if it same url
     /// remove to use as native screen
-    'forgetPassword': 'https://appkatanamart.com/es/recuperar-contrase%C3%B1a',
+    'forgetPassword': 'http://appkatanamart.yarinohanzo.com/es/recuperar-contrase%C3%B1a',
   },
 
   /// ➡️ lib/common/config/general.dart

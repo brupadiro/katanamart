@@ -15,7 +15,6 @@ import '../../models/entities/index.dart';
 import '../../models/index.dart'
     show Country, CountryState, ListCountry, User, UserModel;
 import '../../modules/dynamic_layout/config/blog_config.dart';
-import '../../screens/categories/layouts/side_menu_with_group.dart';
 import '../../screens/index.dart' hide SideMenuCategories, SubCategories;
 import '../../services/index.dart';
 import '../../widgets/common/group_check_box_widget.dart';
@@ -268,30 +267,11 @@ class WordPressWidget extends BaseFrameworks {
     bool enableParallax = false,
     double? parallaxImageRatio,
   }) {
-    switch (layout) {
-      case CardCategories.type:
-        return CardCategories(
-          categories: categories,
-          enableParallax: enableParallax,
-          parallaxImageRatio: parallaxImageRatio,
-        );
-      case ColumnCategories.type:
-        return ColumnCategories(categories);
-      case SubCategories.type:
-        return SubCategories(categories);
-      case SideMenuCategories.type:
-        return SideMenuCategories(categories);
-      case SideMenuSubCategories.type:
-        return SideMenuSubCategories(categories);
-      case HorizonMenu.type:
-        return HorizonMenu(categories);
-      case GridCategory.type:
-        return GridCategory(categories);
-      case SideMenuGroupCategories.type:
-        return SideMenuGroupCategories(categories);
-      default:
-        return HorizonMenu(categories);
-    }
+    return CardCategories(
+      categories: categories,
+      enableParallax: enableParallax,
+      parallaxImageRatio: parallaxImageRatio,
+    );
   }
 
   @override
