@@ -11,7 +11,6 @@ import '../../../../models/entities/store_delivery_date.dart';
 import '../../../../models/index.dart';
 import '../../../../services/index.dart';
 import '../../../../widgets/html/index.dart';
-import '../../../detail/widgets/review.dart';
 import '../../../index.dart';
 
 class ProductOrderItem extends StatefulWidget {
@@ -226,14 +225,7 @@ class _StateProductOrderItem extends BaseScreen<ProductOrderItem> {
 
         /// Review for completed order only.
         if (widget.orderStatus == OrderStatus.completed)
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0),
-            child: Reviews(
-              widget.product.productId,
-              showYourRatingOnly: true,
-            ),
-          ),
-        const SizedBox(height: 5),
+          const SizedBox(height: 5),
         _buildItemDesc(
             S.of(context).itemTotal,
             PriceTools.getCurrencyFormatted(

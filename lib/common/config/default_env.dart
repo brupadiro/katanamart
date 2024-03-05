@@ -150,7 +150,8 @@ class DefaultConfig {
 
     /// If page id null
     /// Privacy Policies page Url. Accessible in the app via Settings > Privacy menu.
-    'PrivacyPoliciesPageUrl': 'https://mstore.io/',
+    'PrivacyPoliciesPageUrl':
+        'https://yarinohanzo.com/content/terms-and-conditions-of-use.html',
 
     'SupportPageUrl': 'https://support.inspireui.com/',
 

@@ -158,6 +158,16 @@ class _SimpleLayoutState extends State<SimpleLayout>
         });
   }
 
+  final services = Services();
+  Future<List<Map>?>? reviews = Future.value(<Map>[]);
+  void getReviews() {
+    if (widget.product.features != null) {
+      reviews = services.api.getReviews(widget.product.id!);
+    } else {
+      reviews = Future.value(<Map>[]);
+    }
+  }
+
   @override
   void initState() {
     tabController = TabController(length: 5, vsync: this);
@@ -394,7 +404,7 @@ class _SimpleLayoutState extends State<SimpleLayout>
                                       onRatingUpdate: (rating) {},
                                     ),
                                   ),
-                                  Text(" 5.0 (23 Reviews)",
+                                  const Text(" 5.0 (23 Reviews)",
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 12,
@@ -404,7 +414,7 @@ class _SimpleLayoutState extends State<SimpleLayout>
                               ),
                               Container(
                                 height: 20,
-                                child: Divider(
+                                child: const Divider(
                                   color: Colors.black12,
                                   height: 1,
                                 ),
@@ -474,8 +484,7 @@ class _SimpleLayoutState extends State<SimpleLayout>
                       borderRadius: BorderRadius.circular(5),
                     ),
                     padding: EdgeInsets.only(right: 5),
-                    child: Image.network(
-                        "https://appkatanamart.com/329-home_default/minamoto-handmade-iaito-sword-.jpg"),
+                    child: Container(),
                   )),
               const Expanded(
                 flex: 3,

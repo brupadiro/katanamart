@@ -11,5 +11,4 @@ export 'product_tag.dart';
 export 'product_title.dart';
 export 'product_variant.dart';
 export 'related_product.dart';
-export 'review.dart';
 export 'variant_image_feature.dart';

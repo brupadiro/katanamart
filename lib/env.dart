@@ -11,7 +11,8 @@ Map<String, dynamic> environment = {
     'blog': 'https://mstore.io',
     //Your website woocommerce. You can remove this line if it same url
     /// remove to use as native screen
-    'forgetPassword': 'http://appkatanamart.yarinohanzo.com/es/recuperar-contrase%C3%B1a',
+    'forgetPassword':
+        'http://appkatanamart.yarinohanzo.com/es/recuperar-contrase%C3%B1a',
   },
 
   /// ➡️ lib/common/config/general.dart
@@ -71,52 +72,11 @@ Map<String, dynamic> environment = {
     },
     "Currencies": [
       {
-        "symbol": "\$",
-        "decimalDigits": 2,
-        "symbolBeforeTheNumber": true,
-        "currency": "USD",
-        "currencyCode": "USD",
-        "smallestUnitRate": 100,
-
-        /// 100 cents = 1 usd
-      },
-      {
-        "symbol": "₹",
-        "decimalDigits": 0,
-        "symbolBeforeTheNumber": true,
-        "currency": "INR",
-        "currencyCode": "INR",
-      },
-      {
-        "symbol": "đ",
-        "decimalDigits": 2,
-        "symbolBeforeTheNumber": false,
-        "currency": "VND",
-        "currencyCode": "VND",
-      },
-      {
         "symbol": "€",
         "decimalDigits": 2,
         "symbolBeforeTheNumber": true,
         "currency": "EUR",
         "currencyCode": "EUR",
-      },
-      {
-        "symbol": "£",
-        "decimalDigits": 2,
-        "symbolBeforeTheNumber": true,
-        "currency": "Pound sterling",
-        "currencyCode": "GBP",
-        "smallestUnitRate": 100,
-
-        /// 100 pennies = 1 pound
-      },
-      {
-        'symbol': 'AR\$',
-        'decimalDigits': 2,
-        'symbolBeforeTheNumber': true,
-        'currency': 'ARS',
-        'currencyCode': 'ARS',
       }
     ],
 
@@ -161,7 +121,8 @@ Map<String, dynamic> environment = {
 
     /// If page id null
     /// Privacy Policies page Url. Accessible in the app via Settings > Privacy menu.
-    "PrivacyPoliciesPageUrl": "https://inspireui.com/privacy-policy/",
+    "PrivacyPoliciesPageUrl":
+        "https://yarinohanzo.com/content/terms-and-conditions-of-use.html",
 
     "SupportPageUrl": "https://support.inspireui.com/",
 
@@ -407,15 +368,6 @@ Map<String, dynamic> environment = {
       "text": "English",
       "storeViewCode": ""
     },
-    // 3 Hindi - hi.arb
-    {
-      "name": "Hindi",
-      "icon": "assets/images/country/in.png",
-      "code": "hi",
-      "text": "Hindi",
-      "storeViewCode": "hi"
-    },
-    // 4 Spanish - es.arb
     {
       "name": "Spanish",
       "icon": "assets/images/country/es.png",
@@ -423,326 +375,6 @@ Map<String, dynamic> environment = {
       "text": "Spanish",
       "storeViewCode": ""
     },
-    // 5 French - fr.arb
-    {
-      "name": "French",
-      "icon": "assets/images/country/fr.png",
-      "code": "fr",
-      "text": "French",
-      "storeViewCode": "fr"
-    },
-    // 6 Arabic ar.arb
-    {
-      "name": "Arabic",
-      "icon": "assets/images/country/ar.png",
-      "code": "ar",
-      "text": "Arabic",
-      "storeViewCode": "ar"
-    },
-    // 7 Russian ru.arb
-    {
-      "name": "Russian",
-      "icon": "assets/images/country/ru.png",
-      "code": "ru",
-      "text": "Русский",
-      "storeViewCode": "ru"
-    },
-    // 8 Indonesian id.arb
-    {
-      "name": "Indonesian",
-      "icon": "assets/images/country/id.png",
-      "code": "id",
-      "text": "Indonesian",
-      "storeViewCode": "id"
-    },
-    // 9 Japanese ja.arb
-    {
-      "name": "Japanese",
-      "icon": "assets/images/country/ja.png",
-      "code": "ja",
-      "text": "Japanese",
-      "storeViewCode": ""
-    },
-    // 10 Korean ko.arb
-    {
-      "name": "Korean",
-      "icon": "assets/images/country/ko.png",
-      "code": "ko",
-      "text": "Korean",
-      "storeViewCode": "ko"
-    },
-    // 11 Vietnamese vi.arb
-    {
-      "name": "Vietnamese",
-      "icon": "assets/images/country/vn.png",
-      "code": "vi",
-      "text": "Vietnam",
-      "storeViewCode": ""
-    },
-    // 12 Romanian ro.arb
-    {
-      "name": "Romanian",
-      "icon": "assets/images/country/ro.png",
-      "code": "ro",
-      "text": "Romanian",
-      "storeViewCode": "ro"
-    },
-    // 13 Turkish - tr.arb
-    {
-      "name": "Turkish",
-      "icon": "assets/images/country/tr.png",
-      "code": "tr",
-      "text": "Turkish",
-      "storeViewCode": "tr"
-    },
-    // 14 Italian - it.arb
-    {
-      "name": "Italian",
-      "icon": "assets/images/country/it.png",
-      "code": "it",
-      "text": "Italian",
-      "storeViewCode": "it"
-    },
-    // 15 German - de.arb
-    {
-      "name": "German",
-      "icon": "assets/images/country/de.png",
-      "code": "de",
-      "text": "German",
-      "storeViewCode": "de"
-    },
-    // 16 Portuguese - pt.arb
-    {
-      "name": "Portuguese",
-      "icon": "assets/images/country/pt.png",
-      "code": "pt",
-      "text": "Portuguese",
-      "storeViewCode": "pt"
-    },
-    // 17 Hungarian - hu.arb
-    {
-      "name": "Hungarian",
-      "icon": "assets/images/country/hu.png",
-      "code": "hu",
-      "text": "Hungarian",
-      "storeViewCode": "hu"
-    },
-    // 18 Hebrew - he.arb
-    {
-      "name": "Hebrew",
-      "icon": "assets/images/country/he.png",
-      "code": "he",
-      "text": "Hebrew",
-      "storeViewCode": "he"
-    },
-    // 19 Thai - th.arb
-    {
-      "name": "Thai",
-      "icon": "assets/images/country/th.png",
-      "code": "th",
-      "text": "Thai",
-      "storeViewCode": "th"
-    },
-    // 20 Dutch - nl.arb
-    {
-      "name": "Dutch",
-      "icon": "assets/images/country/nl.png",
-      "code": "nl",
-      "text": "Dutch",
-      "storeViewCode": "nl"
-    },
-    // 21 Serbian - sr.arb
-    {
-      "name": "Serbian",
-      "icon": "assets/images/country/sr.jpeg",
-      "code": "sr",
-      "text": "Serbian",
-      "storeViewCode": "sr"
-    },
-    // 22 Polish - pl.arb
-    {
-      "name": "Polish",
-      "icon": "assets/images/country/pl.png",
-      "code": "pl",
-      "text": "Polish",
-      "storeViewCode": "pl"
-    },
-    // 23 Persian - fa.arb
-    {
-      "name": "Persian",
-      "icon": "assets/images/country/fa.png",
-      "code": "fa",
-      "text": "Persian",
-      "storeViewCode": ""
-    },
-    // 24 Ukrainian - uk.arb
-    {
-      "name": "Ukrainian",
-      "icon": "assets/images/country/uk.png",
-      "code": "uk",
-      "text": "Ukrainian",
-      "storeViewCode": ""
-    },
-    // 25 Bengali - bn.arb
-    {
-      "name": "Bengali",
-      "icon": "assets/images/country/bn.png",
-      "code": "bn",
-      "text": "Bengali",
-      "storeViewCode": ""
-    },
-    // 26 Tamil - ta.arb
-    {
-      "name": "Tamil",
-      "icon": "assets/images/country/ta.png",
-      "code": "ta",
-      "text": "Tamil",
-      "storeViewCode": ""
-    },
-    // 27 Kurdish - ku.arb
-    {
-      "name": "Kurdish",
-      "icon": "assets/images/country/ku.png",
-      "code": "ku",
-      "text": "Kurdish",
-      "storeViewCode": ""
-    },
-    // 28 Czech - cs.arb
-    {
-      "name": "Czech",
-      "icon": "assets/images/country/cs.png",
-      "code": "cs",
-      "text": "Czech",
-      "storeViewCode": "cs"
-    },
-    // 29 Swedish sv.arb
-    {
-      "name": "Swedish",
-      "icon": "assets/images/country/sv.png",
-      "code": "sv",
-      "text": "Swedish",
-      "storeViewCode": ""
-    },
-    // 30 Finland fi.arb
-    {
-      "name": "Finland",
-      "icon": "assets/images/country/fi.png",
-      "code": "fi",
-      "text": "Finland",
-      "storeViewCode": ""
-    },
-    // 31 Greek el.arb
-    {
-      "name": "Greek",
-      "icon": "assets/images/country/el.png",
-      "code": "el",
-      "text": "Greek",
-      "storeViewCode": ""
-    },
-    // 32 Khmer km.arb
-    {
-      "name": "Khmer",
-      "icon": "assets/images/country/km.png",
-      "code": "km",
-      "text": "Khmer",
-      "storeViewCode": ""
-    },
-    // 33 Kannada intl_kn.arb
-    {
-      "name": "Kannada",
-      "icon": "assets/images/country/kn.png",
-      "code": "kn",
-      "text": "Kannada",
-      "storeViewCode": ""
-    },
-    // 34 Marathi intl_mr.arb
-    {
-      "name": "Marathi",
-      "icon": "assets/images/country/mr.jpeg",
-      "code": "mr",
-      "text": "Marathi",
-      "storeViewCode": ""
-    },
-    // 35 Malay intl_ms.arb
-    {
-      "name": "Malay",
-      "icon": "assets/images/country/ms.jpeg",
-      "code": "ms",
-      "text": "Malay",
-      "storeViewCode": ""
-    },
-    // 36 Bosnian intl_bs.arb
-    {
-      "name": "Bosnian",
-      "icon": "assets/images/country/bs.png",
-      "code": "bs",
-      "text": "Bosnian",
-      "storeViewCode": ""
-    },
-    // 37 Lao intl_lo.arb
-    {
-      "name": "Lao",
-      "icon": "assets/images/country/lo.png",
-      "code": "lo",
-      "text": "Lao",
-      "storeViewCode": ""
-    },
-    // 38 Slovak intl_sk.arb
-    {
-      "name": "Slovak",
-      "icon": "assets/images/country/sk.png",
-      "code": "sk",
-      "text": "Slovak",
-      "storeViewCode": ""
-    },
-    // 39 Swahili intl_sw.arb
-    {
-      "name": "Swahili",
-      "icon": "assets/images/country/sw.png",
-      "code": "sw",
-      "text": "Swahili",
-      "storeViewCode": ""
-    },
-    // 2 zh-Chinese
-    {
-      "name": "Chinese",
-      "icon": "assets/images/country/zh.png",
-      "code": "zh",
-      "text": "Chinese",
-      "storeViewCode": ""
-    },
-    // 40 Chinese Traditional intl_zh_Hant.arb
-    {
-      "name": "Chinese (traditional)",
-      "icon": "assets/images/country/zh.png",
-      "code": "zh_TW",
-      "text": "Chinese (traditional)",
-      "storeViewCode": ""
-    },
-    // 41 Chinese Simplified intl_zh_Hans.arb
-    {
-      "name": "Chinese (simplified)",
-      "icon": "assets/images/country/zh.png",
-      "code": "zh_CN",
-      "text": "Chinese (simplified)",
-      "storeViewCode": ""
-    },
-    // 42 Burmese intl_my.arb
-    {
-      "name": "Burmese",
-      "icon": "assets/images/country/my.png",
-      "code": "my",
-      "text": "Burmese",
-      "storeViewCode": ""
-    },
-    // 43 Albanian intl_sq.arb
-    {
-      "name": "Albanian",
-      "icon": "assets/images/country/sq.png",
-      "code": "sq",
-      "text": "Albanian",
-      "storeViewCode": ""
-    }
   ],
   "unsupportedLanguages": ['ku'],
 
@@ -910,7 +542,7 @@ Map<String, dynamic> environment = {
     /// Enable this to show review in product description.
     "enableReview": true,
     "attributeImagesSize": 50.0,
-    "showSku": true,
+    "showSku": false,
     "showStockQuantity": true,
     "showProductCategories": true,
     "showProductTags": true,

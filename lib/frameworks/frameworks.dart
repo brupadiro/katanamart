@@ -147,6 +147,7 @@ abstract class BaseFrameworks {
       Product? productInfo,
       List<ProductVariation>? variations,
       List<ProductFeature>? features,
+      List<Map>? reviews,
       Map<String?, String?> mapAttribute,
       ProductVariation? variation,
     })?

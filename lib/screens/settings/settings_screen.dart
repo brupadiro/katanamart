@@ -567,32 +567,19 @@ class SettingScreenState extends State<SettingScreen>
                     : null);
             String? pageUrl =
                 privacy?.webUrl ?? kAdvanceConfig.privacyPoliciesPageUrl;
-            if (pageId != null) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PostScreen(
-                      pageId: pageId,
-                      pageTitle: S.of(context).agreeWithPrivacy,
-                    ),
-                  ));
-              return;
-            }
-            if (pageUrl.isNotEmpty) {
-              ///Display multiple languages WebView
-              var locale =
-                  Provider.of<AppModel>(context, listen: false).langCode;
-              pageUrl += '?lang=$locale';
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => WebView(
-                    url: pageUrl,
-                    title: S.of(context).agreeWithPrivacy,
-                  ),
+
+            ///Display multiple languages WebView
+            var locale = Provider.of<AppModel>(context, listen: false).langCode;
+            pageUrl += '?lang=$locale';
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WebView(
+                  url: pageUrl,
+                  title: S.of(context).agreeWithPrivacy,
                 ),
-              );
-            }
+              ),
+            );
           };
           break;
         }

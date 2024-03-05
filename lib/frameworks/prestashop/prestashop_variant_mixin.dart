@@ -22,6 +22,7 @@ mixin PrestashopVariantMixin on ProductVariantMixin {
       Product? productInfo,
       List<ProductVariation>? variations,
       List<ProductFeature>? features,
+      List<Map>? reviews,
       Map<String?, String?> mapAttribute,
       ProductVariation? variation,
     })?
@@ -34,6 +35,7 @@ mixin PrestashopVariantMixin on ProductVariantMixin {
     Map<String?, String?> mapAttribute = HashMap();
     var variations = <ProductVariation>[];
     var features = <ProductFeature>[];
+    var reviews = <Map>[];
     if (prestaShopService.languageCode == null) {
       await prestaShopService.getLanguage();
     }
@@ -59,7 +61,8 @@ mixin PrestashopVariantMixin on ProductVariantMixin {
     }
 
     //get product features
-    features = await Services().api.getProductFeatures(product.features!)!;
+    if (product.features != null)
+      features = await Services().api.getProductFeatures(product.features!)!;
     // utilizar la lista de características de producto aquí
     if (variations.isEmpty) {
       for (var attr in productInfo!.attributes!) {
@@ -89,11 +92,12 @@ mixin PrestashopVariantMixin on ProductVariantMixin {
     if (productVariation != null) {
       context?.read<ProductModel>().changeSelectedVariation(productVariation);
     }
-
+    reviews = await Services().api.getReviews(product.id!) ?? <Map>[];
     onLoad!(
         productInfo: productInfo,
         variations: variations,
         features: features,
+        reviews: reviews,
         mapAttribute: mapAttribute,
         variation: productVariation);
 

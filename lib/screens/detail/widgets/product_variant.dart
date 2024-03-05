@@ -70,6 +70,7 @@ class _StateProductVariant extends State<ProductVariant> {
           List<ProductVariation>? variations,
           List<ProductFeature>? features,
           Map<String?, String?>? mapAttribute,
+          List<Map>? reviews,
           ProductVariation? variation,
         }) {
           if (productInfo != null) {

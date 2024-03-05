@@ -105,7 +105,7 @@ class _PicSwiperState extends State<PicSwiper>
                   itemBuilder: (BuildContext context, int index) {
                     final headers = {
                       'Authorization':
-                          'Basic ${base64Encode(utf8.encode('66RT4KT1429QYKPFQ7Q7WWKJZ9AIEDP9:'))}'
+                          'Basic ${base64Encode(utf8.encode('PQ6YZT3198MZV4FGTRB29Y6Q7IB8NB3C:'))}'
                     };
 
                     var item = widget.pics[index].picUrl!;

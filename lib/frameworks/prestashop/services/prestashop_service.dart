@@ -81,6 +81,21 @@ class PrestashopService extends BaseServices {
   }
 
   @override
+  Future<List<Map>>? getReviews(String? productId) async {
+    var response = await httpGet(
+      'https://api-cdn.yotpo.com/v1/widget/yJRUXUmrKaQzffcdneycBmYBI6QZN7kQWOeZM2Nt/products/${productId}/reviews.json'
+          .toUri()!,
+      headers: {
+        'content-type': 'application/json',
+      },
+    );
+    var body = jsonDecode(response.body);
+    return body['response']['reviews'] != null
+        ? body['response']['reviews']
+        : [];
+  }
+
+  @override
   Future<List<Category>?> getCategories({lang}) async {
     try {
       if (languageCode != lang) await getLanguage(lang: lang);
@@ -833,20 +848,20 @@ class PrestashopService extends BaseServices {
       };
 
       var response = await prestaApi.postAsync('customers', body, 'customer');
-      var user; 
+      var user;
       if (response is Map && !response.containsKey("errors")) {
-        print(response); 
-        user = User.fromPrestaJson(response['customers']);
+        print(response);
+        user = User.fromPrestaJson(response['customers'][0]);
         await storage.write(key: 'jwtToken', value: response['token']);
       } else {
         throw ('Email already exists!');
       }
       return user;
     } catch (e, trace) {
-            printLog(trace.toString());
+      printLog(trace.toString());
       // Buscar el rastro del error
       printLog(e);
-      rethrow; 
+      rethrow;
     }
   }
 
@@ -854,8 +869,8 @@ class PrestashopService extends BaseServices {
   @override
   Future<User> login({username, password}) async {
     try {
-      var response = await prestaApi.signin(
-          'customers', <String, String>{'email': username, 'password': password});
+      var response = await prestaApi.signin('customers',
+          <String, String>{'email': username, 'password': password});
       if (response is Map && response['customers'][0] is Map) {
         await storage.write(
             key: 'jwtToken', value: response['customers'][0]['secure_key']);

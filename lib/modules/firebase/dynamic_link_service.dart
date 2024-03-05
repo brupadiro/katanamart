@@ -42,6 +42,7 @@ class DynamicLinkService {
   }
 
   static void initDynamicLinks(BuildContext context) async {
+    return;
     FirebaseDynamicLinks.instance.onLink.listen((dynamicLinkData) {
       handleDynamicLink(dynamicLinkData.link.path, context);
     }).onError((e) {

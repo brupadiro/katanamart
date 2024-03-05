@@ -29,6 +29,7 @@ abstract class BaseServices {
   }) : blogApi = BlogNewsApi(blogDomain ?? domain);
 
   Future<List<Category>?>? getCategories({lang}) async => const <Category>[];
+  Future<List<Map>>? getReviews(String? productId) async => const <Map>[];
 
   Future<List<Product>>? getProducts({userId}) => null;
 
@@ -71,10 +72,6 @@ abstract class BaseServices {
   Future<User?>? loginApple({String? token}) => null;
 
   Future<User?>? loginGoogle({String? token}) => null;
-
-  Future<List<Review>>? getReviews(productId,
-          {int page = 1, int perPage = 10}) =>
-      null;
 
   Future<List<ProductVariation>?>? getProductVariations(Product product,
           {String? lang}) =>
