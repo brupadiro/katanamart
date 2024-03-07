@@ -1,11 +1,9 @@
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:country_pickers/country.dart' as picker_country;
 import 'package:country_pickers/country_pickers.dart' as picker;
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
-
 import '../../../common/config.dart';
 import '../../../common/constants.dart';
 import '../../../generated/l10n.dart';
@@ -47,7 +45,28 @@ class _ShippingAddressState extends State<ShippingAddress> {
   final _apartmentNode = FocusNode();
 
   Address? address;
-  List<Country>? countries = [];
+  List<Country> countries = [
+    Country(
+      code: "es",
+      name: "Spain",
+    ),
+    Country(
+      code: "it",
+      name: "Italy",
+    ),
+    Country(
+      code: "gb",
+      name: "United Kingdom",
+    ),
+    Country(
+      code: "de",
+      name: "Germany",
+    ),
+    Country(
+      code: "fr",
+      name: "France",
+    ),
+  ];
   List<dynamic> states = [];
 
   @override
@@ -109,13 +128,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
             }
           });
         }
-        countries = await Services().widget.loadCountries();
-        var country = countries!.firstWhereOrNull((element) =>
+        var country = countries.firstWhereOrNull((element) =>
             element.id == address!.country || element.code == address!.country);
         if (country == null) {
-          if (countries!.isNotEmpty) {
-            country = countries![0];
-            address!.country = countries![0].code;
+          if (countries.isNotEmpty) {
+            country = countries[0];
+            address!.country = countries[0].name;
           } else {
             country = Country.fromConfig(address!.country, null, null, []);
           }
@@ -127,7 +145,6 @@ class _ShippingAddressState extends State<ShippingAddress> {
         if (mounted) {
           setState(() {});
         }
-        states = await Services().widget.loadStates(country);
         if (mounted) {
           setState(() {});
         }
@@ -245,19 +262,9 @@ class _ShippingAddressState extends State<ShippingAddress> {
     return 'The E-mail Address must be a valid email address.';
   }
 
+  var countryName = "Spain";
   @override
   Widget build(BuildContext context) {
-    var countryName = S.of(context).country;
-    if (_countryController.text.isNotEmpty) {
-      try {
-        countryName = picker.CountryPickerUtils.getCountryByIsoCode(
-                _countryController.text)
-            .name;
-      } catch (e) {
-        countryName = S.of(context).country;
-      }
-    }
-
     if (address == null) {
       return SizedBox(height: 100, child: kLoadingWidget(context));
     }
@@ -412,11 +419,6 @@ class _ShippingAddressState extends State<ShippingAddress> {
                                         _countryController.text =
                                             address!.country ?? '';
                                       });
-                                      final c = Country(
-                                          id: result.country,
-                                          name: result.country);
-                                      states =
-                                          await Services().widget.loadStates(c);
                                       setState(() {});
                                     }
                                   },
@@ -480,43 +482,50 @@ class _ShippingAddressState extends State<ShippingAddress> {
                             fontWeight: FontWeight.w300,
                             color: Colors.grey),
                       ),
-                      (countries!.length == 1)
-                          ? Text(
-                              picker.CountryPickerUtils.getCountryByIsoCode(
-                                      countries![0].code!)
-                                  .name,
-                              style: const TextStyle(fontSize: 18),
-                            )
-                          : GestureDetector(
-                              onTap: _openCountryPickerDialog,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Text(countryName,
-                                              style: const TextStyle(
-                                                  fontSize: 17.0)),
-                                        ),
-                                        const Icon(Icons.arrow_drop_down)
-                                      ],
-                                    ),
+                      GestureDetector(
+                        onTap: _openCountryPickerDialog,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Text(_countryController.text,
+                                        style: const TextStyle(fontSize: 17.0)),
                                   ),
-                                  const Divider(
-                                    height: 1,
-                                    color: kGrey900,
-                                  )
+                                  const Icon(Icons.arrow_drop_down)
                                 ],
                               ),
                             ),
-                      renderStateInput(),
+                            const Divider(
+                              height: 1,
+                              color: kGrey900,
+                            )
+                          ],
+                        ),
+                      ),
+                      TextFormField(
+                        autocorrect: false,
+                        controller: _stateController,
+                        focusNode: _stateNode,
+                        validator: (val) {
+                          return val!.isEmpty
+                              ? S.of(context).stateIsRequired
+                              : null;
+                        },
+                        decoration:
+                            InputDecoration(labelText: S.of(context).state),
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (_) =>
+                            FocusScope.of(context).requestFocus(_cityNode),
+                        onSaved: (String? value) {
+                          address!.state = value;
+                        },
+                      ),
                       TextFormField(
                         autocorrect: false,
                         controller: _cityController,
@@ -714,12 +723,6 @@ class _ShippingAddressState extends State<ShippingAddress> {
       }
       String? value;
 
-      Object? firstState = states.firstWhereOrNull(
-          (o) => o.id.toString() == address!.state.toString());
-
-      if (firstState != null) {
-        value = address!.state;
-      }
       return DropdownButton(
         items: items,
         value: value,
@@ -751,96 +754,36 @@ class _ShippingAddressState extends State<ShippingAddress> {
   void _openCountryPickerDialog() => showDialog(
         context: context,
         useRootNavigator: false,
-        builder: (contextBuilder) => countries!.isEmpty
-            ? Theme(
-                data: Theme.of(context).copyWith(primaryColor: Colors.pink),
-                child: SizedBox(
-                  height: 500,
-                  child: picker.CountryPickerDialog(
-                    titlePadding: const EdgeInsets.all(8.0),
-                    contentPadding: const EdgeInsets.all(2.0),
-                    searchCursorColor: Colors.pinkAccent,
-                    searchInputDecoration:
-                        const InputDecoration(hintText: 'Search...'),
-                    isSearchable: true,
-                    title: Text(S.of(context).country),
-                    onValuePicked: (picker_country.Country country) async {
-                      _countryController.text = country.isoCode;
-                      address!.country = country.isoCode;
-                      if (mounted) {
-                        setState(() {});
-                      }
-                      final c =
-                          Country(id: country.isoCode, name: country.name);
-                      states = await Services().widget.loadStates(c);
-                      if (mounted) {
-                        setState(() {});
-                      }
+        builder: (contextBuilder) => Dialog(
+          child: SingleChildScrollView(
+            child: Column(
+              children: List.generate(
+                countries.length,
+                (index) {
+                  return GestureDetector(
+                    onTap: () async {
+                      setState(() {
+                        _countryController.text = countries[index].name!;
+                        address!.country = countries[index].name;
+                        address!.countryId = countries[index].id;
+                      });
+                      Navigator.pop(contextBuilder);
+                      setState(() {});
                     },
-                    itemBuilder: (country) {
-                      return Row(
-                        children: <Widget>[
-                          picker.CountryPickerUtils.getDefaultFlagImage(
-                              country),
-                          const SizedBox(width: 8.0),
-                          Expanded(child: Text(country.name)),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              )
-            : Dialog(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: List.generate(
-                      countries!.length,
-                      (index) {
-                        return GestureDetector(
-                          onTap: () async {
-                            setState(() {
-                              _countryController.text = countries![index].code!;
-                              address!.country = countries![index].id;
-                              address!.countryId = countries![index].id;
-                            });
-                            Navigator.pop(contextBuilder);
-                            states = await Services()
-                                .widget
-                                .loadStates(countries![index]);
-                            setState(() {});
-                          },
-                          child: ListTile(
-                            leading: countries![index].icon != null
-                                ? SizedBox(
-                                    height: 40,
-                                    width: 60,
-                                    child: FluxImage(
-                                      imageUrl: countries![index].icon!,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )
-                                : (countries![index].code != null
-                                    ? Image.asset(
-                                        picker.CountryPickerUtils
-                                            .getFlagImageAssetPath(
-                                                countries![index].code!),
-                                        height: 40,
-                                        width: 60,
-                                        fit: BoxFit.fill,
-                                        package: 'country_pickers',
-                                      )
-                                    : const SizedBox(
-                                        height: 40,
-                                        width: 60,
-                                        child: Icon(Icons.streetview),
-                                      )),
-                            title: Text(countries![index].name!),
-                          ),
-                        );
-                      },
+                    child: ListTile(
+                      leading: Image.asset(
+                        'assets/images/country/${countries[index].code}.png',
+                        width: 30,
+                        height: 20,
+                        fit: BoxFit.cover,
+                      ),
+                      title: Text(countries[index].name!),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
+            ),
+          ),
+        ),
       );
 }

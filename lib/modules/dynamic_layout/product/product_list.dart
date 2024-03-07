@@ -51,17 +51,11 @@ class ProductList extends StatelessWidget {
         );
 
       default:
-        return config.rows > 1
-            ? ProductGrid(
-                maxWidth: maxWidth,
-                products: products,
-                config: config..showCountDown = isShowCountDown(),
-              )
-            : ProductListDefault(
-                maxWidth: maxWidth,
-                products: products,
-                config: config..showCountDown = isShowCountDown(),
-              );
+        return ProductGrid(
+          maxWidth: maxWidth,
+          products: products,
+          config: config..showCountDown = isShowCountDown(),
+        );
     }
   }
 

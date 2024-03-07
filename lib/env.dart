@@ -404,7 +404,7 @@ Map<String, dynamic> environment = {
     "EnableReview": true,
 
     /// Enable the Google Maps picker from Billing Address.
-    "allowSearchingAddress": true,
+    "allowSearchingAddress": false,
 
     "GuestCheckout": true,
 

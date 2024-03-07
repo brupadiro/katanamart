@@ -12,7 +12,7 @@ class Country {
   String? idCountry;
   List<CountryState>? states = [];
 
-  Country({this.id, this.name, this.states});
+  Country({this.id, this.name, this.states, this.code});
 
   Country.fromConfig(this.id, this.name, this.icon, List states) {
     code = id;

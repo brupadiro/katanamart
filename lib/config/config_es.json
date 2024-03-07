@@ -75,13 +75,6 @@
       "layout": "twoColumn",
       "category": 4,
       "isSnapping": true
-    },
-    {
-      "name": "Practical Iaito Swords",
-      "image": "",
-      "layout": "twoColumn",
-      "category": 5,
-      "isSnapping": true
     }
   ],
   "Setting": {

@@ -25,8 +25,10 @@ class ProductPricing extends StatelessWidget {
     final currency = Provider.of<AppModel>(context, listen: false).currencyCode;
     final currencyRate = Provider.of<AppModel>(context).currencyRate;
 
-    var priceProduct =
-        PriceTools.getPriceProductValue(product, currency, onSale: true);
+    var priceProduct = PriceTools.getPriceProduct(
+            product, currencyRate, currency,
+            onSale: false) ??
+        '00.00';
 
     /// Calculate the Sale price
     var isSale = (product.onSale ?? false) &&
@@ -41,21 +43,7 @@ class ProductPricing extends StatelessWidget {
       crossAxisAlignment: WrapCrossAlignment.end,
       children: <Widget>[
         Text(
-          product.type == 'grouped'
-              ? '${S.of(context).from} ${PriceTools.getPriceProduct(
-                  product,
-                  currencyRate,
-                  currency,
-                  onSale: true,
-                )}'
-              : priceProduct == '0.0'
-                  ? S.of(context).loading
-                  : Config().isListingType
-                      ? PriceTools.getCurrencyFormatted(
-                          product.price ?? product.regularPrice ?? '0', null)!
-                      : PriceTools.getPriceProduct(
-                          product, currencyRate, currency,
-                          onSale: true)!,
+          priceProduct,
           style: Theme.of(context)
               .textTheme
               .headline6!
@@ -65,32 +53,6 @@ class ProductPricing extends StatelessWidget {
               .apply(fontSizeFactor: 0.8)
               .merge(priceTextStyle),
         ),
-
-        /// Not show regular price for variant product (product.regularPrice = "").
-        if (isSale && product.type != 'variable') ...[
-          const SizedBox(width: 5),
-          Text(
-            product.type == 'grouped'
-                ? ''
-                : PriceTools.getPriceProduct(product, currencyRate, currency,
-                    onSale: false)!,
-            style: Theme.of(context)
-                .textTheme
-                .caption!
-                .copyWith(
-                  fontWeight: FontWeight.w300,
-                  color:
-                      Theme.of(context).colorScheme.secondary.withOpacity(0.6),
-                  decoration: TextDecoration.lineThrough,
-                )
-                .apply(fontSizeFactor: 0.8)
-                .merge(
-                  priceTextStyle?.copyWith(
-                    color: priceTextStyle?.color?.withOpacity(0.6),
-                  ),
-                ),
-          ),
-        ],
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../widgets/common/flux_image.dart';
 import '../config/banner_config.dart';
@@ -29,13 +30,18 @@ class _StateBannerSlider extends State<BannerSlider> {
   late bool autoPlay;
   Timer? timer;
   late int intervalTime;
-
+  final VideoPlayerController _videoController = VideoPlayerController.asset(
+    'assets/videos/banner.mp4', // Asumiendo que el video está en la carpeta de assets
+  );
   @override
   void initState() {
-    autoPlay = widget.config.autoPlay;
-    _controller = PageController();
     intervalTime = widget.config.intervalTime ?? 3;
-    autoPlayBanner();
+    _videoController.initialize().then((_) {
+      // Asegurarse de que el video se reproduzca cuando esté listo
+      _videoController.play();
+      _videoController.setLooping(true); // El video se repetirá en bucle
+      setState(() {});
+    });
 
     super.initState();
   }
@@ -77,27 +83,24 @@ class _StateBannerSlider extends State<BannerSlider> {
       padding: const EdgeInsets.only(top: 10, bottom: 5),
       child: Stack(
         children: <Widget>[
-          PageView(
-            controller: _controller,
-            onPageChanged: (index) {
-              setState(() {
-                position = index;
-              });
-            },
-            children: <Widget>[
-              for (int i = 0; i < items.length; i++)
-                BannerImageItem(
-                  config: items[i],
-                  width: width,
-                  boxFit: boxFit,
-                  padding: widget.config.padding,
-                  radius: widget.config.radius,
-                  onTap: widget.onTap,
-                ),
-            ],
+          // Se agrega el widget VideoPlayer
+          Positioned.fill(
+            child: (_videoController.value.isInitialized)
+                ? AspectRatio(
+                    aspectRatio: _videoController.value.aspectRatio,
+                    child: VideoPlayer(_videoController),
+                  )
+                : Container(
+                    height: 200, // Altura predeterminada del contenedor
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
             child: SmoothPageIndicator(
               controller: _controller!, // PageController
               count: items.length,
@@ -113,27 +116,22 @@ class _StateBannerSlider extends State<BannerSlider> {
               ),
             ),
           ),
-          showNumber
-              ? Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 15, right: 0),
-                    child: Container(
-                      decoration:
-                          BoxDecoration(color: Colors.black.withOpacity(0.6)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 7, vertical: 2),
-                        child: Text(
-                          '${position + 1}/${items.length}',
-                          style: const TextStyle(
-                              fontSize: 11, color: Colors.white),
-                        ),
-                      ),
-                    ),
+          if (showNumber)
+            Positioned(
+              top: 15,
+              right: 0,
+              child: Container(
+                decoration: BoxDecoration(color: Colors.black.withOpacity(0.6)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  child: Text(
+                    '${position + 1}/${items.length}',
+                    style: const TextStyle(fontSize: 11, color: Colors.white),
                   ),
-                )
-              : const SizedBox()
+                ),
+              ),
+            ),
         ],
       ),
     );

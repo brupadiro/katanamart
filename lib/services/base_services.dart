@@ -29,12 +29,12 @@ abstract class BaseServices {
   }) : blogApi = BlogNewsApi(blogDomain ?? domain);
 
   Future<List<Category>?>? getCategories({lang}) async => const <Category>[];
-  Future<List<Map>>? getReviews(String? productId) async => const <Map>[];
+  Future<Map<String, dynamic>> getReviews(String? productId) async => {};
 
   Future<List<Product>>? getProducts({userId}) => null;
 
   Future<List<ProductFeature>>? getProductFeatures(
-          List<dynamic> productFeatures) async =>
+          List<dynamic> productFeatures, String langCode) async =>
       const <ProductFeature>[];
 
   Future<List<Product>?> fetchProductsLayout(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fstore/models/app_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/config.dart';
@@ -32,8 +33,10 @@ class _ProductDescriptionState extends State<ProductDescription> {
   }
 
   void getFeatures() {
+    var langCode = Provider.of<AppModel>(context, listen: false).langCode;
     if (widget.product!.features != null) {
-      features = services.api.getProductFeatures(widget.product!.features!)!;
+      features =
+          services.api.getProductFeatures(widget.product!.features!, langCode)!;
     } else {
       features = Future.value(<ProductFeature>[]);
     }

@@ -261,7 +261,7 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
                       child: Column(
                         children: [
                           Image.asset(
-                            "assets/icons/footer/exclusivity.png",
+                            'assets/icons/footer/exclusivity.png',
                             width: 80,
                           ),
                           const Text(
@@ -274,9 +274,9 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
                           Container(
                             height: 10,
                           ),
-                          Flexible(
+                          const Flexible(
                             fit: FlexFit.loose,
-                            child: const Text(
+                            child: Text(
                               'KATANAMART IS THE EXCLUSIVE DISTRIBUTOR OF YARINOHANZO KATANA SWORD IN UK, THE BEST EUROPEAN CLASSIC MARTIAL ARTS EQUIPMENT BRAND SINCE 2007.',
                               textAlign: TextAlign.center,
                               style: TextStyle(

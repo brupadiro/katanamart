@@ -479,7 +479,7 @@ Map<String, dynamic> environment = {
   "paymentConfig": {
     "DefaultCountryISOCode": "VN",
 
-    "DefaultStateISOCode": "SG",
+    "DefaultStateISOCode": "",
 
     /// Enable the Shipping option from Checkout, support for the Digital Download
     "EnableShipping": true,

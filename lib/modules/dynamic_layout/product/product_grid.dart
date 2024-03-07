@@ -52,34 +52,29 @@ class ProductGrid extends StatelessWidget {
     );
 
     return Container(
-      padding: const EdgeInsets.only(left: padding, top: padding),
-      decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor,
-        borderRadius: BorderRadius.circular(2),
-      ),
-      height: rows * productHeight * getHeightRatio(),
-      child: GridView.count(
-        childAspectRatio: ratioProductImage * getGridRatio(),
-        scrollDirection: Axis.horizontal,
-        physics: config.isSnapping ?? false
-            ? CustomScrollPhysic(
-                width: Layout.buildProductWidth(
-                    screenWidth: width / ratioProductImage,
-                    layout: config.layout))
-            : const ScrollPhysics(),
-        crossAxisCount: rows,
-        children: List.generate(products.length, (i) {
-          return Services().widget.renderProductCardView(
-                item: products[i],
-                width: Layout.buildProductWidth(
-                    screenWidth: width, layout: config.layout),
-                maxWidth: Layout.buildProductMaxWidth(layout: config.layout),
-                height: productHeight,
-                ratioProductImage: ratioProductImage,
-                config: config,
-              );
-        }),
-      ),
-    );
+        padding: const EdgeInsets.only(left: padding, top: padding),
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+          borderRadius: BorderRadius.circular(2),
+        ),
+        height: 10 * productHeight * getHeightRatio(),
+        width: MediaQuery.of(context).size.width,
+        child: GridView.count(
+          childAspectRatio: 17 / 9,
+          scrollDirection: Axis.horizontal,
+          physics: const ScrollPhysics(),
+          crossAxisCount: 10,
+          children: List.generate(products.length, (i) {
+            return Services().widget.renderProductCardView(
+                  item: products[i],
+                  width: Layout.buildProductWidth(
+                      screenWidth: width, layout: config.layout),
+                  maxWidth: Layout.buildProductMaxWidth(layout: config.layout),
+                  height: productHeight,
+                  ratioProductImage: ratioProductImage,
+                  config: config,
+                );
+          }),
+        ));
   }
 }

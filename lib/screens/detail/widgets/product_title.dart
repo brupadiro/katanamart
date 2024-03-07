@@ -130,51 +130,18 @@ class _ProductTitleState extends BaseScreen<ProductTitle> {
                     .apply(fontSizeFactor: 0.9),
               ),
             ),
-            if (isSaleOff)
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 5,
-                  vertical: 2,
-                ),
-                margin: const EdgeInsets.only(left: 4, top: 4),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  S.of(context).sale('$sale'),
-                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                        color: Colors.white,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
-              ),
           ],
         ),
         const SizedBox(height: 10),
-        Services().widget.renderDetailPrice(context, widget.product!, price),
+        Services()
+            .widget
+            .renderDetailPrice(context, widget.product!, regularPrice),
 
         /// For variable product, hide regular price when loading product variation.
         if (isSaleOff) ...[
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                PriceTools.getCurrencyFormatted(
-                  regularPrice,
-                  currencyRate,
-                  currency: currency,
-                )!,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondary
-                          .withOpacity(0.6),
-                      fontWeight: FontWeight.w400,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-              ),
               const SizedBox(width: 10),
               if (isShowCountDown) ...[
                 const Spacer(),

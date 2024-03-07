@@ -81,18 +81,27 @@ class PrestashopService extends BaseServices {
   }
 
   @override
-  Future<List<Map>>? getReviews(String? productId) async {
-    var response = await httpGet(
-      'https://api-cdn.yotpo.com/v1/widget/yJRUXUmrKaQzffcdneycBmYBI6QZN7kQWOeZM2Nt/products/${productId}/reviews.json'
-          .toUri()!,
-      headers: {
-        'content-type': 'application/json',
-      },
-    );
-    var body = jsonDecode(response.body);
-    return body['response']['reviews'] != null
-        ? body['response']['reviews']
-        : [];
+  Future<Map<String, dynamic>> getReviews(String? productId) async {
+    Map<String, dynamic> result = {'total': 0, 'score': 0, 'data': []};
+    try {
+      final response = await httpGet(
+        Uri.parse(
+            'https://api-cdn.yotpo.com/v1/widget/yJRUXUmrKaQzffcdneycBmYBI6QZN7kQWOeZM2Nt/products/${productId}/reviews.json'),
+        headers: {
+          'content-type': 'application/json',
+        },
+      );
+      final body = jsonDecode(response.body);
+      result = {
+        'total': body['response']['bottomline']['total_review'],
+        'score': double.parse(
+            body['response']['bottomline']['average_score'].toStringAsFixed(2)),
+        'data': body['response']['reviews']
+      };
+    } catch (e) {
+      // Manejar el error o dejar el resultado como un mapa vacío
+    }
+    return result;
   }
 
   @override
@@ -437,12 +446,13 @@ class PrestashopService extends BaseServices {
 
   @override
   Future<List<ProductFeature>> getProductFeatures(
-      List<dynamic> productFeatures) async {
+      List<dynamic> productFeatures, String langCode) async {
+    await getLanguage();
     // Realiza una solicitud GET para obtener todos los valores de las características del producto.
     final responseProductFeatureValues =
         await prestaApi.getAsync('product_feature_values');
     final responseProductFeatures =
-        await prestaApi.getAsync('product_features');
+        await prestaApi.getAsync('product_features', lang: idLang!);
 
     // Convierte la respuesta en una lista de mapas de tipo <String, dynamic>.
     final List<dynamic> productFeatureValues =
@@ -484,8 +494,8 @@ class PrestashopService extends BaseServices {
       if (feature == null) {
         continue;
       }
-      final featureName = feature['name'][0]['value'];
-      final featureValue = value['value'][0]['value'];
+      final featureName = feature['name'];
+      final featureValue = value['value'];
       final combinedItem = Map<String, dynamic>.from(feature)
         ..['name'] = featureName // Incluir featureName en el mapa
         ..['value'] = [featureValue]

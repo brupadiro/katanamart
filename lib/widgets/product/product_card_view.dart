@@ -251,7 +251,6 @@ class _ProductCardState extends State<ProductCard> with ActionButtonMixin {
               ),
             ),
           ),
-          ProductOnSale(product: widget.item, config: widget.config),
           if (widget.config.showHeart && !widget.item.isEmptyProduct())
             Positioned(
               top: widget.config.vMargin,

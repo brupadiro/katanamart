@@ -14,6 +14,7 @@ import 'package:fstore/modules/dynamic_layout/tabbar/tab_indicator/rectangular_i
 import 'package:fstore/modules/dynamic_layout/tabbar/tabbar_icon.dart';
 import 'package:fstore/routes/route.dart';
 import 'package:provider/provider.dart';
+import '../../../generated/l10n.dart';
 
 import '../../../common/config.dart';
 import '../../../common/constants.dart';
@@ -159,19 +160,22 @@ class _SimpleLayoutState extends State<SimpleLayout>
   }
 
   final services = Services();
-  Future<List<Map>?>? reviews = Future.value(<Map>[]);
-  void getReviews() {
-    if (widget.product.features != null) {
-      reviews = services.api.getReviews(widget.product.id!);
-    } else {
-      reviews = Future.value(<Map>[]);
+  Map<dynamic, dynamic> reviews = {'total': 0, 'score': 0, 'data': []};
+
+  Future<void> getReviews() async {
+    var reviewsData = await services.api.getReviews(widget.product.id);
+    if (mounted) {
+      // Verifica que el widget todavía esté en el árbol de widgets
+      setState(() {
+        reviews = reviewsData;
+      });
     }
   }
 
   @override
   void initState() {
     tabController = TabController(length: 5, vsync: this);
-
+    getReviews();
     super.initState();
     _hideController = AnimationController(
       vsync: this,
@@ -404,8 +408,9 @@ class _SimpleLayoutState extends State<SimpleLayout>
                                       onRatingUpdate: (rating) {},
                                     ),
                                   ),
-                                  const Text(" 5.0 (23 Reviews)",
-                                      style: TextStyle(
+                                  Text(
+                                      " ${reviews['score']} (${reviews['total']} Reviews)",
+                                      style: const TextStyle(
                                           fontStyle: FontStyle.italic,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
@@ -423,14 +428,12 @@ class _SimpleLayoutState extends State<SimpleLayout>
                                 width: MediaQuery.of(context).size.width,
                                 height: 150,
                                 padding: EdgeInsets.all(5),
-                                child: ListView(
+                                child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
-                                  children: [
-                                    review(),
-                                    review(),
-                                    review(),
-                                    review(),
-                                  ],
+                                  itemCount: reviews['data']?.length ?? 0,
+                                  itemBuilder: (context, index) {
+                                    return review(reviews['data'][index]);
+                                  },
                                 ),
                               ),
                               RelatedProduct(product),
@@ -449,14 +452,14 @@ class _SimpleLayoutState extends State<SimpleLayout>
     );
   }
 
-  Widget review() {
+  Widget review(Map review) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: MediaQuery.of(context).size.width * 0.6,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           RatingBar.builder(
-            initialRating: 5,
+            initialRating: double.parse(review['score'].toString()),
             minRating: 1,
             direction: Axis.horizontal,
             allowHalfRating: true,
@@ -468,37 +471,23 @@ class _SimpleLayoutState extends State<SimpleLayout>
             onRatingUpdate: (rating) {},
           ),
           Text(
-            "Ronin | Handmade laito Sword",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            review['user']['display_name'],
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
           Container(
             height: 5,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.only(right: 5),
-                    child: Container(),
-                  )),
-              const Expanded(
-                flex: 3,
-                child: Text(
-                  'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,',
-                  style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w100,
-                      fontSize: 12,
-                      color: Colors.grey),
-                ),
-              )
-            ],
-          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              review['content'],
+              style: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w100,
+                  fontSize: 12,
+                  color: Colors.grey),
+            ),
+          )
         ],
       ),
     );
